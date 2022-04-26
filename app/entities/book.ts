@@ -21,6 +21,15 @@ export class Book {
   @Field()
   inventory: number;
   
+  @Field()
+  releaseDate: Date;
+  
+  @Field()
+  retailPrice: number;
+  
+  @Field()
+  salePrice: number;
+  
   @Field({ nullable: true })
   notes?: string;  
 }

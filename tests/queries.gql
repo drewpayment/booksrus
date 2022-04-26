@@ -1,0 +1,38 @@
+{
+  inStock {
+    id,
+    title,
+    inventory
+  },
+  outOfStock {
+    id, 
+    title
+  },
+  prereleaseBooks {
+    id, 
+    title, 
+    releaseDate
+  },
+  saleBooks {
+    id, 
+    title, 
+    salePrice,
+    retailPrice
+  },
+  book(id: 1) {
+    id, 
+    title
+  },
+  books(title: "moon") {
+    id, 
+    title
+  },
+  bookExists(isbn: "28710924383"),
+  allOrders(filterBy: null) {
+    id,
+    book {
+      id,
+      title
+    }
+  }
+}

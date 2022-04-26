@@ -12,6 +12,9 @@ function seedDatabase(): Book[] {
       isbn: '3726362789',
       category: 'nonfiction',
       inventory: 9,
+      releaseDate: new Date(1999, 1, 16),
+      retailPrice: 109.99,
+      salePrice: 6.97,
       notes: null,
     },
     {
@@ -21,6 +24,9 @@ function seedDatabase(): Book[] {
       isbn: '3876253647',
       category: 'nonfiction',
       inventory: 0,
+      releaseDate: new Date(2014, 0, 1),
+      retailPrice: 42.99,
+      salePrice: 16.67,
       notes: 'Backordered until the end of the year',
     },
     {
@@ -30,6 +36,9 @@ function seedDatabase(): Book[] {
       isbn: '09283746523',
       category: 'fiction',
       inventory: 3,
+      releaseDate: new Date(2015, 10, 3),
+      retailPrice: 14.95,
+      salePrice: 14.95,
       notes: null,
     },
     {
@@ -39,6 +48,9 @@ function seedDatabase(): Book[] {
       isbn: '37463567283',
       category: 'fiction',
       inventory: 12,
+      releaseDate: new Date(2011, 5, 15),
+      retailPrice: 13.95,
+      salePrice: 12.21,
       notes: null,
     },
     {
@@ -48,6 +60,9 @@ function seedDatabase(): Book[] {
       isbn: '28710924383',
       category: 'nonfiction',
       inventory: 12,
+      releaseDate: new Date(2013, 6, 31),
+      retailPrice: 27.97,
+      salePrice: 14.95,
       notes: null,
     },
     {
@@ -57,6 +72,9 @@ function seedDatabase(): Book[] {
       isbn: '239847201093',
       category: 'fiction',
       inventory: 8,
+      releaseDate: new Date(2022, 10, 16),
+      retailPrice: 14.95,
+      salePrice: 14.95,
       notes: 'Reorder in November',
     },
   ];

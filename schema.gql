@@ -10,6 +10,9 @@ type Book {
   inventory: Float!
   isbn: String!
   notes: String
+  releaseDate: DateTime!
+  retailPrice: Float!
+  salePrice: Float!
   title: String!
 }
 
@@ -18,6 +21,11 @@ type BookOrder {
   id: Int!
   isReservation: Boolean
 }
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
 
 type Mutation {
   purchaseBook(order: OrderInput!): BookOrder!
@@ -36,4 +44,8 @@ type Query {
   book(id: Float!): Book
   bookExists(bookId: Float, isbn: String): Boolean!
   books(title: String!): [Book!]
+  inStock: [Book!]!
+  outOfStock: [Book!]!
+  prereleaseBooks: [Book!]!
+  saleBooks: [Book!]!
 }
