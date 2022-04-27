@@ -14,7 +14,7 @@ const errors = {
   } as HttpError,
 };
 
-//#region
+//#region DATABASE
 
 function seed(): BookOrder[] {
   return [];
@@ -27,11 +27,17 @@ const DATABASE = seed();
 export class OrderService {
   private items = DATABASE;
   private bookService = new BookService();
-  get nextId(): number {
+  private get nextId(): number {
     if (!this.items.length) return 1;
     return Math.max(...this.items.map((x) => x.id)) + 1;
   }
   
+  /**
+   * Get book orders and reservations by book order filtering type.
+   * 
+   * @param filterBy OrderFilterType
+   * @returns Promise<OpResult<BookOrder[]>>
+   */
   async getOrders(filterBy: OrderFilterType = OrderFilterType.none): Promise<OpResult<BookOrder[]>> {
     return new Promise((resolve, reject) => {
       try {
@@ -53,6 +59,12 @@ export class OrderService {
     });
   }
 
+  /**
+   * Check to see if a book is available in the collection.
+   * 
+   * @param params OrderSearchRequest
+   * @returns Promise<OpResult<boolean>>
+   */
   async isBookAvailable(
     params: OrderSearchRequest,
   ): Promise<OpResult<boolean>> {
@@ -85,6 +97,12 @@ export class OrderService {
     });
   }
 
+  /**
+   * Reserve a book. 
+   * 
+   * @param bookId number
+   * @returns Promise<OpResult<BookOrder>>
+   */
   async reserve(bookId: number): Promise<OpResult<BookOrder>> {
     return new Promise(async (resolve, reject) => {
       try {
@@ -131,6 +149,12 @@ export class OrderService {
     });
   }
 
+  /**
+   * Purchase a book.
+   * 
+   * @param bookId number
+   * @returns Promise<OpResult<BookOrder>>
+   */
   async purchase(bookId: number): Promise<OpResult<BookOrder>> {
     return new Promise(async (resolve, reject) => {
       let result: BookOrder;
@@ -160,7 +184,7 @@ export class OrderService {
       } else {
         const newOrder: BookOrder = {...new BookOrder(),
           id: this.nextId,
-          book: { id: bookId } as Book,
+          book: {...book},
           isReservation: false,
         };
 

@@ -8,6 +8,6 @@ export class OrderInput {
   @Field()
   bookId: number;
   
-  @Field()
+  @Field({ nullable: true })
   isReservation?: boolean;
 }

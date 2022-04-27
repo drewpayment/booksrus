@@ -1,3 +1,55 @@
 mutation {
+  reserveBook(bookId:1) {
+    id,
+    book {
+      title
+    }
+  },
   
+  purchaseBook(order: {bookId: 3, isReservation: false}) {
+    id,
+    book {
+      id
+    }
+  },
+  
+  addBook(book:{
+    title: "Five Dysfunctions of a Team",
+    author: "Patrick Lencioni",
+    category: "Management & Leadership",
+    isbn: "0787960756",
+    inventory: 1,
+    releaseDate: "Mon Apr 11 2022 00:00:00 GMT-0400 (Eastern Daylight Time)",
+    retailPrice: 24.95,
+    salePrice: 19.81,
+    notes: "I had to read this book for a leadership training a couple times."
+  }) {
+    id,
+    title,
+    category,
+    author,
+    isbn,
+    inventory,
+    releaseDate,
+    retailPrice,
+    salePrice,
+    notes
+  },
+  
+  updateBook(book:{
+    id: 7,
+    salePrice: 9.99,
+    notes: "I had to read this book for a leadership training a couple times. Edit: I am not a big fan of self-help business books."
+  }) {
+    id,
+    title,
+    category,
+    author,
+    isbn,
+    inventory,
+    releaseDate,
+    retailPrice,
+    salePrice,
+    notes
+  }
 }
