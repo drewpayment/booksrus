@@ -34,5 +34,12 @@
       id,
       title
     }
+  },
+  search(searchText:"nonfiction") {
+    id,
+    title,
+    author,
+    category,
+    isbn
   }
 }

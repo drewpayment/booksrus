@@ -86,6 +86,10 @@ const DATABASE = seedDatabase();
 
 export class BookService {
   private items = DATABASE;
+  private get nextId(): number {
+    if (!this.items.length) return 1;
+    return Math.max(...this.items.map((x) => x.id)) + 1;
+  }
 
   async getAllBooks(): Promise<OpResult<Book[]>> {
     return new Promise((resolve, reject) => {
@@ -139,7 +143,7 @@ export class BookService {
    * @param book
    * @returns Promise<Book>
    */
-  async addBook(book: Partial<Book>): Promise<Book> {
+  async addBook(book: Partial<Book>): Promise<OpResult<Book>> {
     return new Promise((resolve, reject) => {
       // validation?
 
@@ -158,15 +162,14 @@ export class BookService {
         }
       }
 
-      const nextId = Math.max(...this.items.map((i) => i.id)) + 1;
       const dto = {
         ...book,
-        id: nextId,
+        id: this.nextId,
       } as Book;
 
       this.items.push(dto);
 
-      resolve(dto);
+      resolve({ data: dto });
     });
   }
 
